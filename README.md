@@ -80,7 +80,7 @@ Then you'll have another function for when the user cancels the modal so the sta
 This is bad because of ...
 
 1. **Boilerplate**: Excessive boilerplate code for simple modal operations.
-2. **State Management**: Dependency on state from the parents that add more code and complexity to the parent component.
+2. **State Management**: Dependency on state from the parents that add more code and complexity to the parent component. Also, depending on how you built your modal, you'll have to make sure you clear it's state when you close it.
 3. **Readability**: Reduced readability due having to go back and forth to find where the modal is being opened, then find out where it's being closed and where the code path for confirmation is. You don't have a straight flow that is easy to follow.
 
 ## Usage with `react-modals-suck`
@@ -89,7 +89,7 @@ This is bad because of ...
 
 ### Features
 
-- **Simplified State Management**: You do not have to worry about having a model state in the parent component.
+- **Simplified State Management**: You do not have to worry about having a model state in the parent component and every time you open the modal it has a brand new clean state, not requiring cleanups.
 - **Improved Readability**: You just need to worry about a linear code flow without having to go to different functions to see what the outcomes do.
 - **Customizable**: Easy to style and animate with CSS-in-JS libraries like styled-components.
 - **Data Handling**: You get the data straight out of the response from the modal in the same code flow.
@@ -107,30 +107,12 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 const ModalContent = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px;
-  height: 300px;
-  background-color: white;
-  border: 1px solid black;
+  /* ... Usual Modal Styles ... */
+
   transition:
     transform 0.3s ease-out,
     opacity 0.3s ease-out;
   opacity: 0;
-
-  .modal-button-close {
-    position: absolute;
-    top: 20px;
-    right: 0px;
-  }
-
-  .modal-button-confirm {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-  }
 
   /* Opening animation */
   &.modal-open {
