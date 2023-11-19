@@ -15,6 +15,7 @@ This way your Modals and Dialogs will work more like ones from other platforms a
 
 ## Installation
 
+#### Not available yet
 ```bash
 npm install react-modals-suck
 ```
